@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/resource">
+        <file alias="new_file">icons/New file.png</file>
+        <file alias="open_file">icons/Open.png</file>
+        <file alias="save_file">icons/Save.png</file>
+        <file alias="about">icons/Info.png</file>
+        <file alias="ply2bin">icons/ply2bin.png</file>
+    </qresource>
+</RCC>
