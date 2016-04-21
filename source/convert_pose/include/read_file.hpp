@@ -4,17 +4,22 @@
 #include <QTextStream>
 #include <QString>
 
-class ReadFile
+#include "pose_data.hpp"
+
+class ReadWriteFiles
 {
 public:
-  ReadFile(const QString& file_path);
+  static bool ReadPoseFile(const QString& file_path,const QString& split_char,
+                          PoseData& pose_data);
 
-  bool Read(const QString& file_path);
+  static bool WritePoseFile(
+    const QString& file_path,
+    const PoseData& pose_data);
 
-protected:
-
-private:
-  QTextStream* text_stream_;
+  static bool WritePoseFileKML(
+    const QString& file_path,
+    const PoseData& pose_data);
 };
+
 
 #endif
