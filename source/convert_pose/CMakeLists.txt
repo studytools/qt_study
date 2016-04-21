@@ -1,11 +1,6 @@
 include_directories("include")
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-#boost
-set(Boost_NO_BOOST_CMAKE ON)
-find_package(Boost 1.60.0 REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Xml REQUIRED)
