@@ -66,10 +66,14 @@ void MainWindow::OnPushButtonInput()
     "",
     "Pose Files (*.txt *.log) || All Files (*.*)");
 
+  if (file_name.isEmpty()) return;
+
   ui->lineEdit_input->setText(file_name);
 
   QFileInfo file_info(file_name);
   ui->lineEdit_output->setText(file_info.absolutePath());
+
+  Clear();
 
   if (!ReadWriteFiles::ReadPoseFile(
      file_name,ui->lineEdit_split->text(),pose_data_))
@@ -181,4 +185,14 @@ void MainWindow::OnLineEditSkip()
   pose_data_.set_skip_line(line);
   RefreshTable();
   OnLineEditId();
+}
+
+void MainWindow::Clear()
+{
+  pose_data_.Clear();
+  ui->lineEdit_prefix->setText("");
+  ui->lineEdit_suffix->setText("");
+  ui->lineEdit_id->setText("0");
+  ui->lineEdit_id->setText("0");
+  ui->lineEdit_split->setText(" ");
 }

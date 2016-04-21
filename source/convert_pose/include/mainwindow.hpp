@@ -20,6 +20,7 @@ public:
 
 private:
   void creatConnect();
+  void Clear();
 
 private slots:
   void RefreshTable();
