@@ -52,8 +52,8 @@ const QList<QStringList>& PoseData::data() const
 
 int PoseData::columns() const
 {
-  if (data_.empty()) return 0;
-  return data_.at(0).size();
+  if (data_.empty() || data_.size() < skip_line_) return 0;
+  return data_.at(skip_line_).size();
 }
 
 int PoseData::column_type(Type type) const
@@ -104,6 +104,17 @@ void PoseData::set_column_type(int col,Type type)
 void PoseData::RemoveColumnType(int key)
 {
   column_type_.remove(key);
+}
+
+void PoseData::Clear()
+{
+  data_.clear();
+  last_split_char_ = ' ';
+  offset_ = 0;
+  skip_line_ = 0;
+  prefix_.clear();
+  suffix_.clear();
+  column_type_.clear();
 }
 
 bool PoseData::SplitPose(QChar split_char)
