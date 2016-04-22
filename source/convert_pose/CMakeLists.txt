@@ -25,7 +25,7 @@ set(source_FILES
       source/table_header_view.cpp
     )
 
-add_executable(conver_pose ${source_FILES} ${ui_FILES})
+add_executable(conver_pose WIN32 ${source_FILES} ${ui_FILES})
 
 target_link_libraries(conver_pose ${Qt5Widgets_LIBRARIES} ${Qt5Xml_LIBRARIES})
 
