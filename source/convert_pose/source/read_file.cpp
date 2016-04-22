@@ -63,7 +63,7 @@ bool ReadWriteFiles::WritePoseFileKML(
 
   QDomDocument doc("google earth file");
   QDomElement root = doc.createElement("kml");
-  root.setAttribute("xmlns","\"http:\\earth.google.com/kml/2.2\"");
+  root.setAttribute("xmlns","http://earth.google.com/kml/2.2");
   doc.appendChild(root);
 
   QDomElement document = doc.createElement("Document");
