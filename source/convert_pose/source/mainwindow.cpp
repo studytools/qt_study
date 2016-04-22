@@ -56,6 +56,8 @@ void MainWindow::creatConnect()
           this,&MainWindow::OnLineEditSkip);
   connect(header_view_,&CCheckBoxHeaderView::updateTable,
           this,&MainWindow::RefreshTable);
+  connect(ui->pushButton_exit,&QPushButton::clicked,
+          this,&MainWindow::OnPushButtonExit);
 }
 
 void MainWindow::OnPushButtonInput()
@@ -144,8 +146,18 @@ void MainWindow::OnPushButtonKML()
   QString file_path = ui->lineEdit_output->text();
   QFileInfo file_info(file_path,out_file_name + QString(".kml"));
   QString full_file = file_info.absoluteFilePath();
-  ReadWriteFiles::WritePoseFileKML(full_file,pose_data_);
-
+  QMessageBox msgBox;
+  if(ReadWriteFiles::WritePoseFileKML(full_file,pose_data_))
+  {
+    msgBox.setText(QString::fromLocal8Bit("完成转换!"));
+    msgBox.exec();
+  }
+  else
+  {
+    QMessageBox msgBox;
+    msgBox.setText(QString::fromLocal8Bit("转换失败!"));
+    msgBox.exec();
+  }
 }
 
 void MainWindow::OnPushButtonIndex()
@@ -157,7 +169,18 @@ void MainWindow::OnPushButtonIndex()
   QString file_path = ui->lineEdit_output->text();
   QFileInfo file_info(file_path,out_file_name + QString("_out.txt"));
   QString full_file = file_info.absoluteFilePath();
-  ReadWriteFiles::WritePoseFile(full_file,pose_data_);
+  QMessageBox msgBox;
+  if(ReadWriteFiles::WritePoseFile(full_file,pose_data_))
+  {
+    msgBox.setText(QString::fromLocal8Bit("完成转换!"));
+    msgBox.exec();
+  }
+  else
+  {
+    QMessageBox msgBox;
+    msgBox.setText(QString::fromLocal8Bit("转换失败!"));
+    msgBox.exec();
+  }
 }
 
 void MainWindow::OnLineEditId()
@@ -195,4 +218,9 @@ void MainWindow::Clear()
   ui->lineEdit_id->setText("0");
   ui->lineEdit_id->setText("0");
   ui->lineEdit_split->setText(" ");
+}
+
+void MainWindow::OnPushButtonExit()
+{
+  exit(0);
 }

@@ -34,6 +34,7 @@ private slots:
   void OnPushButtonOutput();
   void OnLineEditId();
   void OnLineEditSkip();
+  void OnPushButtonExit();
 
 private:
   Ui::Widget *ui;

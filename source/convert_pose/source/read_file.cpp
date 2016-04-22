@@ -32,6 +32,8 @@ bool ReadWriteFiles::WritePoseFile(
   const QString& file_path,
   const PoseData& pose_data)
 {
+  if(pose_data.empty()) return false;
+
   QFile file(file_path);
   if(!file.open(QFile::WriteOnly))
     return false;
@@ -57,6 +59,8 @@ bool ReadWriteFiles::WritePoseFileKML(
   const QString& file_path,
   const PoseData& pose_data)
 {
+  if (pose_data.empty()) return false;
+  
   QFile file(file_path);
   if(!file.open(QFile::WriteOnly | QFile::Text))
       return false;

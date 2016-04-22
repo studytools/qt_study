@@ -44,6 +44,7 @@ public:
   Type column_type(int col) const;
   int rows() const;
   QString data(int row, int col) const;
+  bool empty() const;
 
 public slots:
   bool SplitPose(QChar split_char);

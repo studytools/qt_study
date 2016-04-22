@@ -25,7 +25,6 @@ void CCheckBoxHeaderView::paintEvent(QPaintEvent *e)
 void CCheckBoxHeaderView::comboboxIndexChanged(int box_index)
 {
   QComboBox* box = dynamic_cast<QComboBox*>(sender());
-  
   int col_index = column_boxes_.key(box);
 
   if(box_index == 0 || box_index > pose_data_->header().size())

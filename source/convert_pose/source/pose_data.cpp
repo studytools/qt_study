@@ -141,3 +141,8 @@ bool PoseData::SplitPose(QChar split_char)
   last_split_char_ = split_char;
   return true;
 }
+
+bool PoseData::empty() const
+{
+  return data_.empty();
+}
