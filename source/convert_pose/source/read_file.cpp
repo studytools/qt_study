@@ -50,6 +50,7 @@ bool ReadWriteFiles::WritePoseFile(
 
   file.close();
 
+  return true;
 }
 
 bool ReadWriteFiles::WritePoseFileKML(
@@ -62,7 +63,7 @@ bool ReadWriteFiles::WritePoseFileKML(
 
   QDomDocument doc("google earth file");
   QDomElement root = doc.createElement("kml");
-  root.setAttribute("xmlns","\"http:\/\/earth.google.com\/kml\/2.2\"");
+  root.setAttribute("xmlns","\"http:\\earth.google.com/kml/2.2\"");
   doc.appendChild(root);
 
   QDomElement document = doc.createElement("Document");
@@ -85,7 +86,7 @@ bool ReadWriteFiles::WritePoseFileKML(
   icon_style.appendChild(icon);
   QDomElement icon_href = doc.createElement("href");
   icon.appendChild(icon_href);
-  QDomText href_text = doc.createTextNode("http:\//maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png");
+  QDomText href_text = doc.createTextNode("http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png");
   icon_href.appendChild(href_text);
 
   QDomElement style_track = doc.createElement("Style");
@@ -142,8 +143,6 @@ bool ReadWriteFiles::WritePoseFileKML(
     coordinates.appendChild(coordinates_text);
   }
 
-
-
   QDomElement line_folder = doc.createElement("Folder");
   document.appendChild(line_folder);
   QDomElement line_folder_name = doc.createElement("name");
@@ -188,4 +187,6 @@ bool ReadWriteFiles::WritePoseFileKML(
   out.setCodec("UTF-8");
   doc.save(out,4,QDomNode::EncodingFromTextStream);
   file.close();
+
+  return true;
 }

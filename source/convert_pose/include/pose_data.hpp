@@ -33,6 +33,7 @@ public:
   void set_suffix(const QString& suffix);
   void set_column_type(int col, Type type);
   void RemoveColumnType(int key);
+  void Clear();
 
   QStringList header();
   QList<QStringList>& data();
