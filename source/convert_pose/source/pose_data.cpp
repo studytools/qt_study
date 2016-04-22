@@ -72,8 +72,13 @@ int PoseData::rows() const
 }
 
 QString PoseData::data(int row, int col) const
-{  
+{
   row += skip_line_;
+
+  if (data_.empty()) return QString();
+  if (data_.size() <= row || data_.at(row).empty()) return QString();
+  if (data_.at(row).size() <= col) return QString();
+  
   if (column_type_[col] == ID)
   {
     bool is_number = false;
