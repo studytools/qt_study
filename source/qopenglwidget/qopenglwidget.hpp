@@ -3,6 +3,7 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions_3_3_Core>
+#include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
 #include <QVector3D>
 #include <QMatrix4x4>
@@ -28,6 +29,7 @@ private:
   GLuint m_posAttr;
   GLuint m_colAttr;
   GLuint m_matrixUniform;
+  QOpenGLVertexArrayObject* vao_;
 
 };
 

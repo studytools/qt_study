@@ -51,6 +51,32 @@ void GLWidget::initializeGL()
   m_colAttr       = m_program->attributeLocation("setColor");
   m_matrixUniform = m_program->uniformLocation("matrix");
 
+
+  m_program->bind();
+//   vao_ = new QOpenGLVertexArrayObject;
+//   vao_->create();
+//   glBindVertexArray(vao_->objectId());
+
+  static GLfloat vertices[] ={
+    0.0f,0.707f,0.0f,
+    -0.5f,-0.5f,0.0f,
+    0.5f,-0.5f,0.0f
+  };
+
+  static GLfloat colors[] ={
+    1.0f,0.0f,0.0f,
+    0.0f,1.0f,0.0f,
+    0.0f,0.0f,1.0f
+  };
+//   m_program->setAttributeValue(m_posAttr,*vertices);
+//   m_program->setAttributeBuffer(m_posAttr,GL_FLOAT,0,3,0);
+
+//   m_program->setAttributeValue(m_colAttr,*colors);
+//   m_program->setAttributeBuffer(m_colAttr,GL_FLOAT,0,3,0
+//   glVertexAttribPointer(m_posAttr,2,GL_FLOAT,GL_FALSE,0,vertices);
+//   glVertexAttribPointer(m_colAttr,3,GL_FLOAT,GL_FALSE,0,colors);
+
+
 }
 
 void GLWidget::paintGL()
@@ -62,15 +88,16 @@ void GLWidget::paintGL()
   glEnable(GL_DEPTH_TEST);
 
   QMatrix4x4 modelview;
-  modelview.perspective(60.0f, 4.0f/3.0f, 0.1f, 100.0f);
-  modelview.translate(0, 0, -2);
+  modelview.perspective(60.0f,4.0f/3.0f,0.1f,100.0f);
+  modelview.translate(0,0,-2);
+
 
   m_program->bind();
   m_program->setUniformValue(m_matrixUniform, modelview);
   GLfloat vertices[] = {
-    0.0f, 0.707f,
-    -0.5f, -0.5f,
-    0.5f, -0.5f
+    0.0f, 0.707f,0.0,
+    -0.5f, -0.5f,0.0,
+    0.5f, -0.5f,0.0
   };
 
   GLfloat colors[] = {
@@ -78,17 +105,23 @@ void GLWidget::paintGL()
     0.0f, 1.0f, 0.0f,
     0.0f, 0.0f, 1.0f
   };
+  m_program->setAttributeValue(m_posAttr,*vertices);
+  m_program->setAttributeBuffer(m_posAttr,GL_FLOAT,0,3,0);
 
-  glVertexAttribPointer(m_posAttr, 2, GL_FLOAT, GL_FALSE, 0, vertices);
-  glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
+  m_program->setAttributeValue(m_colAttr,*colors);
+  m_program->setAttributeBuffer(m_colAttr,GL_FLOAT,0,3,0);
 
-  glEnableVertexAttribArray(0);
-  glEnableVertexAttribArray(1);
+//   glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+//   glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
+//   glBindVertexArray(vao_->objectId());
+
+//   glEnableVertexAttribArray(m_posAttr);
+//   glEnableVertexAttribArray(m_colAttr);
 
   glDrawArrays(GL_TRIANGLES, 0, 3);
 
-  glDisableVertexAttribArray(1);
-  glDisableVertexAttribArray(0);
+//   glDisableVertexAttribArray(m_posAttr);
+//   glDisableVertexAttribArray(m_colAttr);
 
   m_program->release();
 
